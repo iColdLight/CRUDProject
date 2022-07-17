@@ -1,0 +1,43 @@
+import java.util.LinkedList;
+import java.util.List;
+
+public class GsonSkillRepositoryImpl {
+    List<Skill> skills = new LinkedList<>();
+
+    public Skill save (Skill skill){
+       skills.add(skill);
+       return ;
+    }
+
+    public Skill update (Skill skill){
+        int position = findItem(skill);
+        if (position >= 0){
+            update(position, skill);
+        }
+        return ;
+    }
+
+    public void update (int position, Skill skill){
+        skills.set(position, skill);
+        System.out.println("Skill number" + (position+1) + "has been updated");
+    }
+
+    public List<Skill> getAll(){
+        for(int i = 0; i<skills.size(); i++ )
+            System.out.println(skills.get(i));
+        return ;
+    }
+
+    public Skill getById(Long id){
+        skills.indexOf(id);
+        return ;
+    }
+
+    public void deleteById(Long id){
+        skills.remove(id);
+    }
+
+    public int findItem(Skill searchSkill){
+        return skills.indexOf(searchSkill);
+    }
+}
