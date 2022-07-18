@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class GsonSkillRepositoryImpl implements SkillRepository {
 
@@ -58,7 +59,14 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
 
     @Override
     public Skill update (Skill skill){
-        return null;
+        List<Skill> currentSkill = getAllSkills();
+        currentSkill.forEach(s->{
+            if (s.getId().equals(skill.getId())) {
+                s.setName(skill.getName());
+            }
+        });
+        writeSkillsToFile(currentSkill);
+        return skill;
     }
 
     @Override

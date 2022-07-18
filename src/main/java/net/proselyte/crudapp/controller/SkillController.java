@@ -26,12 +26,12 @@ public class SkillController {
 
     public Skill updateSkill (String oldSkill, String newSkill){
         List<Skill> allSkills = getAllSkills();
-        allSkills.forEach(s -> {
-            if (s.getName().equals(oldSkill)) {
-                s.setName(newSkill);
-            }
-        });
-        return skillRepository.update();
+        Skill skill = allSkills.stream().filter(s -> s.getName().equals(oldSkill)).findFirst().orElse(null);
+        if (skill != null) {
+            skill.setName(newSkill);
+            return skillRepository.update(skill);
+        }
+        throw new RuntimeException("Skill with name = " + oldSkill + "not found");
     }
 
     public void deleteSkillByID (Long id){
