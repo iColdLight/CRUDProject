@@ -29,11 +29,11 @@ public class SkillView {
     }
 
     public void updateSkill (){
-        System.out.println("Enter skill name you want to replace: ");
-        String oldSkill = scanner.nextLine();
+        System.out.println("Enter skill id you want to update: ");
+        Long id = scanner.nextLong();
         System.out.println("Enter a new skill name: ");
         String newSkill = scanner.nextLine();
-        skillController.updateSkill(oldSkill, newSkill);
+        skillController.updateSkill(id, newSkill);
     }
 
     public void deleteSkillByID(){
